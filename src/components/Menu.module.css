@@ -1,0 +1,5 @@
+.container {
+  background-color: var(--color-primary);
+  color: var(--color-gray-900);
+  padding: 65px 0px;
+}

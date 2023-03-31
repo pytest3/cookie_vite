@@ -1,0 +1,28 @@
+.sectionWrapper {
+  padding-top: clamp(50px, calc(8vw +2rem), 200px);
+  padding-bottom: clamp(50px, calc(8vw +2rem), 200px);
+  background-color: var(--color-primary);
+}
+
+.callToActionText {
+  text-align: center;
+  line-height: 1.5;
+  font-size: clamp(1rem, calc(0.5vw + 1rem), 2rem);
+}
+
+.button {
+  max-width: fit-content;
+  align-self: center;
+  margin-top: clamp(1rem, 2vw, 3rem);
+}
+
+.innerWrapper {
+  /* width: clamp(420px, 55%, 700px); */
+  /* max-width: 100%; */
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

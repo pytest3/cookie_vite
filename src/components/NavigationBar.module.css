@@ -1,0 +1,68 @@
+.logo {
+  text-decoration: none;
+  color: var(--color-gray-900);
+  font-size: 2.5rem;
+  font-family: Pacifico;
+  padding: 0 20px;
+}
+
+.links {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: clamp(1rem, 5.7vw - 1.75rem, 5rem);
+}
+
+.leftLinks {
+  justify-self: start;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--color-gray-900);
+}
+
+.links a:hover,
+.links a.active {
+  color: salmon;
+  text-decoration: underline;
+}
+
+.spacer,
+.burger {
+  display: none;
+}
+
+@media (max-width: 550px) {
+  .navbar {
+    margin: 0px;
+    margin-top: -30px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .logo {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .links {
+    display: none;
+  }
+
+  .spacer,
+  .burger {
+    display: revert;
+  }
+}
+
+@media (max-width: 1100px) {
+  .logo {
+    font-size: 2rem;
+  }
+
+  .navbar {
+    font-size: 1rem;
+  }
+}
