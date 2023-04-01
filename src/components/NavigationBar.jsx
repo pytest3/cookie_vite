@@ -9,7 +9,7 @@ function NavigationBar() {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      {showModal && <Cart />}
+      {showModal && <Cart onClose={() => setShowModal(false)} />}
       <nav>
         <Wrapper>
           <div className={classes.spacer}></div>

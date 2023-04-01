@@ -41,12 +41,14 @@ const DUMMY_CART_ITEMS = [
   },
 ];
 
-export default function Cart() {
+export default function Cart({ onClose }) {
   return (
     <Modal>
       <Wrapper>
         <SuperHeader>
-          <div>X</div>
+          <div>
+            <CloseCartButton onClick={onClose}>X</CloseCartButton>
+          </div>
           <RightCorner>
             <span>Cart</span>
             <div>(3)</div>
@@ -84,6 +86,8 @@ export default function Cart() {
     </Modal>
   );
 }
+const CloseCartButton = styled.button``;
+
 const Quantity = styled.span`
   text-align: center;
 `;
