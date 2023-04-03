@@ -39,6 +39,7 @@ const Wrapper = styled.div`
   grid-template-columns: 300px 500px;
   justify-content: center;
   margin-top: 50px;
+  gap: 30px;
 `;
 const ProductImage = styled.img``;
 const Name = styled.h1``;
