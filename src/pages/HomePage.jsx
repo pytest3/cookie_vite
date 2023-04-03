@@ -8,19 +8,19 @@ import Blog from "../components/Blog";
 import Footer from "../components/Footer";
 import CallToAction from "../components/CallToAction";
 import Products from "./Products";
+import SignUp from "../components/SignUp";
 
 function HomePage() {
   return (
     <Fragment>
       <Header />
       <CallToAction />
-
       <AboutUs />
       <Products></Products>
-
       <Testimonial />
       <Blog />
       <Footer />
+      <SignUp />
     </Fragment>
   );
 }
