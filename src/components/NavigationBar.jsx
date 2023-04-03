@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from "../ui/Modal";
 import styled from "styled-components";
 import Cart from "./Cart";
-
+import { ShoppingCart } from "react-feather";
 function NavigationBar() {
   const [showModal, setShowModal] = useState(false);
 
@@ -53,7 +53,7 @@ function NavigationBar() {
                 }
                 onClick={() => setShowModal(true)}
               >
-                Cart
+                <ShoppingCart />
               </NavLink>
             </li>
             <li>
