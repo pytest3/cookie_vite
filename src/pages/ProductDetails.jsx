@@ -2,14 +2,27 @@ import styled from "styled-components";
 import Button from "../ui/Button";
 import COOKIES_DATA from "../data/CookiesData";
 import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../store/cart-context";
 
 export default function ProductDetails() {
-  const formSubmitHandler = () => {};
   const { productId } = useParams();
+  const ctx = useContext(CartContext);
 
-  const { name, price, description, url } = COOKIES_DATA.find((i) => {
+  const { id, name, price, description, url } = COOKIES_DATA.find((i) => {
     return i.id === +productId;
   });
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    ctx.addProduct({
+      id: id,
+      name: name,
+      price: price,
+      quantity: +e.target.quantity.value,
+      url: url,
+    });
+  };
 
   return (
     <Wrapper>
