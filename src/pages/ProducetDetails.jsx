@@ -16,16 +16,18 @@ export default function ProductDetails() {
       <ProductImage src={url}></ProductImage>
       <OrderForm onSubmit={formSubmitHandler}>
         <Name>{name}</Name>
-        <Price>{price}</Price>
+        <Price>${price}</Price>
         <Description>{description}</Description>
-        <QuantityLabel htmlFor="quantity">Quantity</QuantityLabel>
-        <ProductQuantity
-          id="quantity"
-          name="quantity"
-          type="number"
-          min="0"
-          defaultValue={1}
-        ></ProductQuantity>
+        <QuantityWrapper>
+          <QuantityLabel htmlFor="quantity">Quantity</QuantityLabel>
+          <QuantityInput
+            id="quantity"
+            name="quantity"
+            type="number"
+            min="0"
+            defaultValue={1}
+          ></QuantityInput>
+        </QuantityWrapper>
         <AddToCartButton>Add To Cart</AddToCartButton>
       </OrderForm>
     </Wrapper>
@@ -34,7 +36,9 @@ export default function ProductDetails() {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 300px 500px;
+  justify-content: center;
+  margin-top: 50px;
 `;
 const ProductImage = styled.img``;
 const Name = styled.h1``;
@@ -42,12 +46,17 @@ const Price = styled.div``;
 const Description = styled.div``;
 const OrderForm = styled.form`
   display: grid;
-  gap: 20px;
+  gap: 25px;
+`;
+const QuantityWrapper = styled.div`
+  display: grid;
+  gap: 5px;
 `;
 const QuantityLabel = styled.label``;
-const ProductQuantity = styled.input`
+const QuantityInput = styled.input`
   width: 100px;
 `;
 const AddToCartButton = styled(Button)`
   width: 300px;
+  text-align: center;
 `;
