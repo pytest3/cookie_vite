@@ -4,7 +4,6 @@ import { useState } from "react";
 import Modal from "../ui/Modal";
 import styled from "styled-components";
 import Cart from "./Cart";
-import { ShoppingCart } from "react-feather";
 function NavigationBar() {
   const [showModal, setShowModal] = useState(false);
 
@@ -48,22 +47,22 @@ function NavigationBar() {
           <ul className={classes.links}>
             <li>
               <NavLink
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-                onClick={() => setShowModal(true)}
-              >
-                <ShoppingCart />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/contact"
                 className={({ isActive }) =>
                   isActive ? classes.active : undefined
                 }
               >
                 Contact us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+                onClick={() => setShowModal(true)}
+              >
+                Cart
               </NavLink>
             </li>
           </ul>
