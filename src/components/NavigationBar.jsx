@@ -7,9 +7,15 @@ import Cart from "./Cart";
 
 function NavigationBar() {
   const [showModal, setShowModal] = useState(false);
+
+  const handleCloseCart = () => {
+    setShowModal(false);
+    document.body.style.overflow = "scroll";
+  };
+
   return (
     <>
-      {showModal && <Cart onClose={() => setShowModal(false)} />}
+      {showModal && <Cart onClose={handleCloseCart} />}
       <nav>
         <Wrapper>
           <div className={classes.spacer}></div>
