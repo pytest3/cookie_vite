@@ -24,6 +24,7 @@ export default function ProductDetails() {
           name="quantity"
           type="number"
           min="0"
+          defaultValue={1}
         ></ProductQuantity>
         <AddToCartButton>Add To Cart</AddToCartButton>
       </OrderForm>
