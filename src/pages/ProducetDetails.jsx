@@ -31,12 +31,22 @@ export default function ProductDetails() {
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 300px 1fr;
+`;
 const ProductImage = styled.img``;
 const Name = styled.h1``;
 const Price = styled.div``;
 const Description = styled.div``;
-const OrderForm = styled.form``;
+const OrderForm = styled.form`
+  display: grid;
+  gap: 20px;
+`;
 const QuantityLabel = styled.label``;
-const ProductQuantity = styled.input``;
-const AddToCartButton = styled(Button)``;
+const ProductQuantity = styled.input`
+  width: 100px;
+`;
+const AddToCartButton = styled(Button)`
+  width: 300px;
+`;
