@@ -10,7 +10,9 @@ const Products = () => {
       {COOKIES_DATA.slice(0, 6).map(({ id, name, price, url }) => (
         <Cookie key={id}>
           <ImageWrapper>
-            <CookieImage src={url} />
+            <Link to={`/product-details/${id}`}>
+              <CookieImage src={url} />
+            </Link>
           </ImageWrapper>
           <CookieDescription>
             <Link to={id}>{name}</Link>
