@@ -48,6 +48,9 @@ export default function SignUp() {
           onBlur={validateEmail}
           isValid={emailValid}
         ></EmailInput>
+        {emailValid === false && (
+          <ValidationMessage>Please enter a valid email</ValidationMessage>
+        )}
         <PasswordLabel htmlFor="password">Password</PasswordLabel>
         <PasswordInput
           type="password"
@@ -57,11 +60,20 @@ export default function SignUp() {
           onBlur={validatePassword}
           isValid={passwordValid}
         ></PasswordInput>
+        {passwordValid === false && (
+          <ValidationMessage>
+            Please enter a password with at least 5 characters
+          </ValidationMessage>
+        )}
         <SubmitButton disabled={!validForm}>Submit</SubmitButton>
       </Form>
     </Wrapper>
   );
 }
+
+const ValidationMessage = styled.div`
+  color: var(--color-gray-300);
+`;
 
 const Wrapper = styled.div`
   padding: 24px 0px;
