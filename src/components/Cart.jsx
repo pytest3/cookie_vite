@@ -1,47 +1,50 @@
 import Modal from "../ui/Modal";
 import styled from "styled-components";
 import Button from "../ui/Button";
+import { useContext } from "react";
+import { CartContext } from "../store/cart-context";
 
-const DUMMY_CART_ITEMS = [
-  {
-    id: 1,
-    name: "Cookie1",
-    price: 2,
-    url: "/images/double-choc-chip-cookie.png",
-  },
-  {
-    id: 2,
-    name: "Cookie2",
-    price: 4,
-    url: "/images/double-choc-chip-cookie.png",
-  },
-  {
-    id: 3,
-    name: "Cookie3",
-    price: 3,
-    url: "/images/double-choc-chip-cookie.png",
-  },
-  {
-    id: 3,
-    name: "Cookie3",
-    price: 3,
-    url: "/images/double-choc-chip-cookie.png",
-  },
-  {
-    id: 3,
-    name: "Cookie3",
-    price: 3,
-    url: "/images/double-choc-chip-cookie.png",
-  },
-  {
-    id: 3,
-    name: "Cookie3",
-    price: 3,
-    url: "/images/double-choc-chip-cookie.png",
-  },
-];
+// const DUMMY_CART_ITEMS = [
+//   {
+//     id: 1,
+//     name: "Cookie1",
+//     price: 2,
+//     url: "/images/double-choc-chip-cookie.png",
+//   },
+//   {
+//     id: 2,
+//     name: "Cookie2",
+//     price: 4,
+//     url: "/images/double-choc-chip-cookie.png",
+//   },
+//   {
+//     id: 3,
+//     name: "Cookie3",
+//     price: 3,
+//     url: "/images/double-choc-chip-cookie.png",
+//   },
+//   {
+//     id: 3,
+//     name: "Cookie3",
+//     price: 3,
+//     url: "/images/double-choc-chip-cookie.png",
+//   },
+//   {
+//     id: 3,
+//     name: "Cookie3",
+//     price: 3,
+//     url: "/images/double-choc-chip-cookie.png",
+//   },
+//   {
+//     id: 3,
+//     name: "Cookie3",
+//     price: 3,
+//     url: "/images/double-choc-chip-cookie.png",
+//   },
+// ];
 
 export default function Cart({ onClose }) {
+  const ctx = useContext(CartContext);
   return (
     <Modal>
       <Wrapper>
@@ -57,7 +60,7 @@ export default function Cart({ onClose }) {
         <Header>CART</Header>
         <CartBody>
           <CartItems>
-            {DUMMY_CART_ITEMS.map((i) => (
+            {ctx.products.map((i) => (
               <CartItem>
                 <img src={i.url} alt={i.name} />
                 <ItemDescription>
