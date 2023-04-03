@@ -6,6 +6,7 @@ import AboutUs, { loader as aboutPageLoader } from "./pages/AboutUsPage";
 import Contact from "./pages/Contact";
 import HomePage from "./pages/HomePage";
 import BonusJoke from "./pages/BonusJoke";
+import ProductDetails from "./pages/ProducetDetails";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "products", element: <Products /> },
+      { path: "product-details/:productId", element: <ProductDetails /> },
       {
         path: "about",
         loader: aboutPageLoader,
