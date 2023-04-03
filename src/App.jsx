@@ -6,7 +6,7 @@ import AboutUs, { loader as aboutPageLoader } from "./pages/AboutUsPage";
 import Contact from "./pages/Contact";
 import HomePage from "./pages/HomePage";
 import BonusJoke from "./pages/BonusJoke";
-import ProductDetails from "./pages/ProducetDetails";
+import ProductDetails from "./pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
