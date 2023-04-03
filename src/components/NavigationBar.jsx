@@ -15,67 +15,65 @@ function NavigationBar() {
   return (
     <>
       {showModal && <Cart onClose={handleCloseCart} />}
-      <nav>
-        <Wrapper>
-          <div className={classes.spacer}></div>
-          <ul className={`${classes.links} ${classes.leftLinks}`}>
-            <li>
-              <NavLink
-                to="/"
-                end
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/products"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                Products
-              </NavLink>
-            </li>
-          </ul>
-          <Link to="/" className={classes.logo}>
-            Cookie Shop
-          </Link>
-          <ul className={classes.links}>
-            <li>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                Contact us
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-                onClick={() => setShowModal(true)}
-              >
-                Cart
-              </NavLink>
-            </li>
-          </ul>
-          <div className={classes.burger}>+</div>
-        </Wrapper>
-      </nav>
+      <Wrapper>
+        <div className={classes.spacer}></div>
+        <ul className={`${classes.links} ${classes.leftLinks}`}>
+          <li>
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Products
+            </NavLink>
+          </li>
+        </ul>
+        <Link to="/" className={classes.logo}>
+          Cookie Shop
+        </Link>
+        <ul className={classes.links}>
+          <li>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Contact us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              onClick={() => setShowModal(true)}
+            >
+              Cart
+            </NavLink>
+          </li>
+        </ul>
+        <div className={classes.burger}>+</div>
+      </Wrapper>
     </>
   );
 }
 
 export default NavigationBar;
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   position: sticky;
   top: 0px;
   z-index: 2;
