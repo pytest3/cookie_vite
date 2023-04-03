@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-function Button(props) {
+function Button({ className, children, ...props }) {
   return (
-    <ButtonWrapper className={`${props.className}`}>
-      {props.children}
+    <ButtonWrapper className={`${className}`} {...props}>
+      {children}
     </ButtonWrapper>
   );
 }
