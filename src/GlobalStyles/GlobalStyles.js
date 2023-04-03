@@ -90,6 +90,7 @@ html {
   --color-gray-500: ${COLORS.gray[500]};
   --color-gray-700: ${COLORS.gray[700]};
   --color-gray-900: ${COLORS.gray[900]};
+  --color-urgent: ${COLORS.urgent};
   --color-CTA: ${COLORS.CTA};
 
   --color-background: ${COLORS.background};
