@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "../ui/Button";
 import { useContext } from "react";
 import { CartContext } from "../store/cart-context";
+import { Link } from "react-router-dom";
 
 // const DUMMY_CART_ITEMS = [
 //   {
@@ -97,7 +98,11 @@ export default function Cart({ onClose }) {
             </TotalCost>
           )}
           {ctx.totalCartQuantity === 0 ? (
-            <BuyButton>Continue Shopping</BuyButton>
+            <Link to="/products">
+              <ContinueShoppingButton onClick={onClose}>
+                Continue Shopping
+              </ContinueShoppingButton>
+            </Link>
           ) : (
             <BuyButton>Continue to Checkout</BuyButton>
           )}
@@ -191,6 +196,9 @@ const BuyButton = styled(Button)`
   width: 100%;
   text-align: center;
 `;
+
+const ContinueShoppingButton = styled(BuyButton)``;
+
 const CartFooter = styled.div`
   display: grid;
 `;
