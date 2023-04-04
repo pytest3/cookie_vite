@@ -1,9 +1,10 @@
 import { NavLink, Link } from "react-router-dom";
 import classes from "./NavigationBar.module.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Modal from "../ui/Modal";
 import styled from "styled-components";
 import Cart from "./Cart";
+import { CartContext } from "../store/cart-context";
 function NavigationBar() {
   const [showModal, setShowModal] = useState(false);
 
@@ -11,6 +12,8 @@ function NavigationBar() {
     setShowModal(false);
     document.body.style.overflow = "scroll";
   };
+
+  const ctx = useContext(CartContext);
 
   return (
     <>
@@ -61,7 +64,7 @@ function NavigationBar() {
               }
               onClick={() => setShowModal(true)}
             >
-              Cart
+              Cart {ctx.totalCartQuantity > 0 && `(${ctx.totalCartQuantity})`}
             </NavLink>
           </li>
         </ul>
