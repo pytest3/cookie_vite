@@ -85,18 +85,33 @@ export default function Cart({ onClose }) {
               </CartItem>
             ))}
           </CartItems>
+          {ctx.totalCartQuantity === 0 && (
+            <EmptyCartMessage>Your cart is empty</EmptyCartMessage>
+          )}
         </CartBody>
         <CartFooter>
-          <TotalCost>
-            <div>Subtotal:</div>
-            <div>$216</div>
-          </TotalCost>
-          <BuyButton>Continue to Checkout</BuyButton>
+          {ctx.totalCartQuantity !== 0 && (
+            <TotalCost>
+              <div>Subtotal:</div>
+              <div>$216</div>
+            </TotalCost>
+          )}
+          {ctx.totalCartQuantity === 0 ? (
+            <BuyButton>Continue Shopping</BuyButton>
+          ) : (
+            <BuyButton>Continue to Checkout</BuyButton>
+          )}
         </CartFooter>
       </Wrapper>
     </Modal>
   );
 }
+
+const EmptyCartMessage = styled.div`
+  justify-self: center;
+  color: var(--color-gray-700);
+`;
+
 const CloseCartButton = styled.button``;
 
 const Quantity = styled.span`
@@ -128,9 +143,6 @@ const TotalCost = styled.div`
   grid-template-columns: repeat(2, auto);
   justify-content: space-between;
   font-weight: var(--font-weight-normal);
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid var(--color-gray-500);
 `;
 
 const ItemDescription = styled.div`
@@ -189,6 +201,8 @@ const CartBody = styled.div`
   grid-template-rows: 30px 1fr;
   padding-bottom: 24px;
   padding-right: 10px;
+  border-bottom: 1px solid var(--color-gray-500);
+  margin-bottom: 24px;
 `;
 
 const Wrapper = styled.div`
