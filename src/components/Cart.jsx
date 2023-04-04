@@ -94,7 +94,7 @@ export default function Cart({ onClose }) {
           {ctx.totalCartQuantity !== 0 && (
             <TotalCost>
               <div>Subtotal:</div>
-              <div>$216</div>
+              <div>${ctx.totalCost.toFixed(2)}</div>
             </TotalCost>
           )}
           {ctx.totalCartQuantity === 0 ? (
