@@ -5,16 +5,15 @@ export const CartContext = createContext({
   products: [],
   addProduct: (product) => {},
   removeProduct: (productId) => {},
-  decrementQuantity: (productId) => {},
+  decrementQuantity: (productId, productQuantity) => {},
   incrementQuantity: (productId) => {},
 });
 
 export default function CartContextProvider({ children }) {
-  const [products, setProducts] = useState(INITIAL_PRODUCTS);
+  const [products, setProducts] = useState([]);
 
   function addProduct(product) {
     const productExists = products.find((i) => i.id === product.id);
-
     if (productExists) {
       setProducts(
         products.map((i) => {
@@ -31,14 +30,18 @@ export default function CartContextProvider({ children }) {
   }
 
   function removeProduct(productId) {
-    return products.filter((i) => i.id !== productId);
+    return setProducts(products.filter((i) => i.id !== +productId));
   }
 
-  function decrementQuantity(productId) {
-    return setProducts(
+  function decrementQuantity(productId, productQuantity) {
+    if (productQuantity === 1) {
+      removeProduct(productId);
+      return;
+    }
+    setProducts(
       products.map((i) => {
         if (i.id === productId) {
-          return { ...i, quantity: i.quantity-- };
+          return { ...i, quantity: i.quantity - 1 };
         } else {
           return i;
         }
@@ -47,10 +50,10 @@ export default function CartContextProvider({ children }) {
   }
 
   function incrementQuantity(productId) {
-    return setProducts(
+    setProducts(
       products.map((i) => {
-        if (i.id === productId) {
-          return { ...i, quantity: i.quantity++ };
+        if (i.id === +productId) {
+          return { ...i, quantity: i.quantity + 1 };
         } else {
           return i;
         }
@@ -80,13 +83,13 @@ const INITIAL_PRODUCTS = [
     name: "Cookie1",
     price: 2,
     url: "/images/double-choc-chip-cookie.png",
-    quantity: 0,
+    quantity: 1,
   },
   {
     id: 2,
     name: "Cookie2",
     price: 4,
     url: "/images/double-choc-chip-cookie.png",
-    quantity: 0,
+    quantity: 1,
   },
 ];
