@@ -68,7 +68,7 @@ export default function Cart({ onClose }) {
                   <ItemQuantity>
                     <QuantityWrapper>
                       <QuantityButton>-</QuantityButton>
-                      <Quantity>1</Quantity>
+                      <Quantity>{i.quantity}</Quantity>
                       <QuantityButton>+</QuantityButton>
                     </QuantityWrapper>
                   </ItemQuantity>
