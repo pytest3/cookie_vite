@@ -5,6 +5,8 @@ export const CartContext = createContext({
   products: [],
   addProduct: (product) => {},
   removeProduct: (productId) => {},
+  decrementQuantity: (productId) => {},
+  incrementQuantity: (productId) => {},
 });
 
 export default function CartContextProvider({ children }) {
@@ -32,6 +34,30 @@ export default function CartContextProvider({ children }) {
     return products.filter((i) => i.id !== productId);
   }
 
+  function decrementQuantity(productId) {
+    return setProducts(
+      products.map((i) => {
+        if (i.id === productId) {
+          return { ...i, quantity: i.quantity-- };
+        } else {
+          return i;
+        }
+      })
+    );
+  }
+
+  function incrementQuantity(productId) {
+    return setProducts(
+      products.map((i) => {
+        if (i.id === productId) {
+          return { ...i, quantity: i.quantity++ };
+        } else {
+          return i;
+        }
+      })
+    );
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -39,6 +65,8 @@ export default function CartContextProvider({ children }) {
         products: products,
         addProduct: addProduct,
         removeProduct: removeProduct,
+        decrementQuantity: decrementQuantity,
+        incrementQuantity: incrementQuantity,
       }}
     >
       {children}
