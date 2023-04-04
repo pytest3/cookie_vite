@@ -7,10 +7,22 @@ export const CartContext = createContext({
   removeProduct: (productId) => {},
   decrementQuantity: (productId, productQuantity) => {},
   incrementQuantity: (productId) => {},
+  totalCartQuantity: 0,
+  totalCost: 0,
 });
 
 export default function CartContextProvider({ children }) {
   const [products, setProducts] = useState([]);
+
+  const totalCartQuantity = products.reduce((prevVal, curVal) => {
+    return prevVal + curVal.quantity;
+  }, 0);
+
+  const totalCost = products.reduce((prevVal, curVal) => {
+    return prevVal + curVal.quantity * curVal.price;
+  }, 0);
+
+  console.log(totalCartQuantity);
 
   function addProduct(product) {
     const productExists = products.find((i) => i.id === product.id);
@@ -70,6 +82,8 @@ export default function CartContextProvider({ children }) {
         removeProduct: removeProduct,
         decrementQuantity: decrementQuantity,
         incrementQuantity: incrementQuantity,
+        totalCartQuantity: totalCartQuantity,
+        totalCost: totalCost,
       }}
     >
       {children}
