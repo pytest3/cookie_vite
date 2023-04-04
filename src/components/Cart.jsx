@@ -61,15 +61,23 @@ export default function Cart({ onClose }) {
         <CartBody>
           <CartItems>
             {ctx.products.map((i) => (
-              <CartItem>
+              <CartItem key={i.id}>
                 <img src={i.url} alt={i.name} />
                 <ItemDescription>
                   <ItemName>{i.name}</ItemName>
                   <ItemQuantity>
                     <QuantityWrapper>
-                      <QuantityButton>-</QuantityButton>
+                      <QuantityButton
+                        onClick={() => ctx.decrementQuantity(i.id, i.quantity)}
+                      >
+                        -
+                      </QuantityButton>
                       <Quantity>{i.quantity}</Quantity>
-                      <QuantityButton>+</QuantityButton>
+                      <QuantityButton
+                        onClick={() => ctx.incrementQuantity(i.id)}
+                      >
+                        +
+                      </QuantityButton>
                     </QuantityWrapper>
                   </ItemQuantity>
                   <ItemPrice>${i.price}</ItemPrice>
