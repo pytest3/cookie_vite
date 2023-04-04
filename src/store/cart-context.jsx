@@ -11,7 +11,21 @@ export default function CartContextProvider({ children }) {
   const [products, setProducts] = useState(INITIAL_PRODUCTS);
 
   function addProduct(product) {
-    return setProducts([...products, product]);
+    const productExists = products.find((i) => i.id === product.id);
+
+    if (productExists) {
+      setProducts(
+        products.map((i) => {
+          if (i.id === product.id) {
+            return { ...i, quantity: (i.quantity += product.quantity) };
+          } else {
+            return i;
+          }
+        })
+      );
+    } else {
+      return setProducts([...products, product]);
+    }
   }
 
   function removeProduct(productId) {
@@ -38,11 +52,13 @@ const INITIAL_PRODUCTS = [
     name: "Cookie1",
     price: 2,
     url: "/images/double-choc-chip-cookie.png",
+    quantity: 0,
   },
   {
     id: 2,
     name: "Cookie2",
     price: 4,
     url: "/images/double-choc-chip-cookie.png",
+    quantity: 0,
   },
 ];
