@@ -54,7 +54,7 @@ export default function Cart({ onClose }) {
           </div>
           <RightCorner>
             <span>Cart</span>
-            <div>(3)</div>
+            <div>({ctx.totalCartQuantity})</div>
           </RightCorner>
         </SuperHeader>
         <Header>CART</Header>
