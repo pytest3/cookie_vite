@@ -157,6 +157,7 @@ const ItemDescription = styled.div`
     "quantity price";
   justify-content: space-between;
   align-content: space-between;
+  gap: 0px 16px;
 `;
 
 const ItemName = styled.span`
@@ -170,6 +171,7 @@ const ItemPrice = styled.div`
 
 const ItemQuantity = styled.div`
   grid-area: quantity;
+  width: 110px;
 `;
 
 const CartItems = styled.ul`
@@ -182,13 +184,17 @@ const CartItems = styled.ul`
 const CartItem = styled.li`
   list-style-type: none;
   display: grid;
-  gap: 1rem;
+  gap: 20px;
   grid-template-columns: 6rem 1fr;
 
   &:not(:last-of-type) {
     padding-bottom: 24px;
     margin-bottom: 20px;
     border-bottom: 1px solid var(--color-gray-300);
+  }
+
+  &:last-of-type {
+    padding-bottom: 24px;
   }
 `;
 
