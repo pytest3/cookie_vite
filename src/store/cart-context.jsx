@@ -69,7 +69,7 @@ function cartReducer(state, action) {
   } else if (action.type === "INCREMENT") {
     console.log(state);
     return state.map((i) => {
-      if (i.id === +action.quantity) {
+      if (i.id === +action.id) {
         return { ...i, quantity: i.quantity + 1 };
       } else {
         return i;

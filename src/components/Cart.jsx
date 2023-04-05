@@ -85,6 +85,7 @@ export default function Cart({ onClose }) {
                         onClick={() =>
                           cartDispatchCtx({
                             type: "INCREMENT",
+                            id: i.id,
                             quantity: i.quantity,
                           })
                         }
