@@ -1,92 +1,82 @@
-import { useState, createContext } from "react";
+import { createContext, useReducer } from "react";
 
 export const CartContext = createContext({
-  showCart: false,
   products: [],
-  addProduct: (product) => {},
-  removeProduct: (productId) => {},
-  decrementQuantity: (productId, productQuantity) => {},
-  incrementQuantity: (productId) => {},
   totalCartQuantity: 0,
   totalCost: 0,
 });
 
-export default function CartContextProvider({ children }) {
-  const [products, setProducts] = useState([]);
+export const CartDispatchContext = createContext({
+  dispatchCartActions: () => {},
+});
 
-  const totalCartQuantity = products.reduce((prevVal, curVal) => {
+export default function CartContextProvider({ children }) {
+  const [cartState, dispatchCartActions] = useReducer(cartReducer, []);
+
+  const totalCartQuantity = cartState.reduce((prevVal, curVal) => {
     return prevVal + curVal.quantity;
   }, 0);
 
-  const totalCost = products.reduce((prevVal, curVal) => {
+  const totalCost = cartState.reduce((prevVal, curVal) => {
     return prevVal + curVal.quantity * curVal.price;
   }, 0);
 
-  function addProduct(product) {
-    const productExists = products.find((i) => i.id === product.id);
-    if (productExists) {
-      setProducts(
-        products.map((i) => {
-          if (i.id === product.id) {
-            return { ...i, quantity: (i.quantity += product.quantity) };
-          } else {
-            return i;
-          }
-        })
-      );
-    } else {
-      return setProducts([...products, product]);
-    }
-  }
-
-  function removeProduct(productId) {
-    return setProducts(products.filter((i) => i.id !== +productId));
-  }
-
-  function decrementQuantity(productId, productQuantity) {
-    if (productQuantity === 1) {
-      removeProduct(productId);
-      return;
-    }
-    setProducts(
-      products.map((i) => {
-        if (i.id === productId) {
-          return { ...i, quantity: i.quantity - 1 };
-        } else {
-          return i;
-        }
-      })
-    );
-  }
-
-  function incrementQuantity(productId) {
-    setProducts(
-      products.map((i) => {
-        if (i.id === +productId) {
-          return { ...i, quantity: i.quantity + 1 };
-        } else {
-          return i;
-        }
-      })
-    );
-  }
-
   return (
-    <CartContext.Provider
-      value={{
-        showCart: false,
-        products: products,
-        addProduct: addProduct,
-        removeProduct: removeProduct,
-        decrementQuantity: decrementQuantity,
-        incrementQuantity: incrementQuantity,
-        totalCartQuantity: totalCartQuantity,
-        totalCost: totalCost,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+    <CartDispatchContext.Provider value={dispatchCartActions}>
+      <CartContext.Provider
+        value={{
+          products: cartState,
+          totalCartQuantity: totalCartQuantity,
+          totalCost: totalCost,
+        }}
+      >
+        {children}
+      </CartContext.Provider>
+    </CartDispatchContext.Provider>
   );
+}
+
+function cartReducer(state, action) {
+  if (action.type === "ADD") {
+    const { type, ...rest } = action;
+    const productExists = state.find((i) => i.id === action.id);
+
+    if (productExists) {
+      return state.map((i) => {
+        if (i.id === action.id) {
+          console.log(i.quantity);
+          return { ...i, quantity: i.quantity + action.quantity };
+        } else {
+          return i;
+        }
+      });
+    } else {
+      return [...state, { ...rest }];
+    }
+  } else if (action.type === "DELETE") {
+    return state.filter((i) => i.id !== +action.id);
+  } else if (action.type === "DECREMENT") {
+    if (action.quantity === 1) {
+      return state.filter((i) => i.id !== +action.id);
+    }
+    return state.map((i) => {
+      if (i.id === action.id) {
+        return { ...i, quantity: i.quantity - 1 };
+      } else {
+        return i;
+      }
+    });
+  } else if (action.type === "INCREMENT") {
+    console.log(state);
+    return state.map((i) => {
+      if (i.id === +action.quantity) {
+        return { ...i, quantity: i.quantity + 1 };
+      } else {
+        return i;
+      }
+    });
+  }
+  throw Error("Unknown action: " + action.type);
 }
 
 const INITIAL_PRODUCTS = [

@@ -2,7 +2,7 @@ import Modal from "../ui/Modal";
 import styled from "styled-components";
 import Button from "../ui/Button";
 import { useContext } from "react";
-import { CartContext } from "../store/cart-context";
+import { CartContext, CartDispatchContext } from "../store/cart-context";
 import { Link } from "react-router-dom";
 
 // const DUMMY_CART_ITEMS = [
@@ -45,7 +45,8 @@ import { Link } from "react-router-dom";
 // ];
 
 export default function Cart({ onClose }) {
-  const ctx = useContext(CartContext);
+  const cartCtx = useContext(CartContext);
+  const cartDispatchCtx = useContext(CartDispatchContext);
   return (
     <Modal>
       <Wrapper>
@@ -55,13 +56,13 @@ export default function Cart({ onClose }) {
           </div>
           <RightCorner>
             <span>Cart</span>
-            <div>({ctx.totalCartQuantity})</div>
+            <div>({cartCtx.totalCartQuantity})</div>
           </RightCorner>
         </SuperHeader>
         <Header>CART</Header>
         <CartBody>
           <CartItems>
-            {ctx.products.map((i) => (
+            {cartCtx.products.map((i) => (
               <CartItem key={i.id}>
                 <img src={i.url} alt={i.name} />
                 <ItemDescription>
@@ -69,13 +70,24 @@ export default function Cart({ onClose }) {
                   <ItemQuantity>
                     <QuantityWrapper>
                       <QuantityButton
-                        onClick={() => ctx.decrementQuantity(i.id, i.quantity)}
+                        onClick={() =>
+                          cartDispatchCtx({
+                            type: "DECREMENT",
+                            id: i.id,
+                            quantity: i.quantity,
+                          })
+                        }
                       >
                         -
                       </QuantityButton>
                       <Quantity>{i.quantity}</Quantity>
                       <QuantityButton
-                        onClick={() => ctx.incrementQuantity(i.id)}
+                        onClick={() =>
+                          cartDispatchCtx({
+                            type: "INCREMENT",
+                            quantity: i.quantity,
+                          })
+                        }
                       >
                         +
                       </QuantityButton>
@@ -86,18 +98,18 @@ export default function Cart({ onClose }) {
               </CartItem>
             ))}
           </CartItems>
-          {ctx.totalCartQuantity === 0 && (
+          {cartCtx.totalCartQuantity === 0 && (
             <EmptyCartMessage>Your cart is empty</EmptyCartMessage>
           )}
         </CartBody>
         <CartFooter>
-          {ctx.totalCartQuantity !== 0 && (
+          {cartCtx.totalCartQuantity !== 0 && (
             <TotalCost>
               <div>Subtotal:</div>
-              <div>${ctx.totalCost.toFixed(2)}</div>
+              <div>${cartCtx.totalCost.toFixed(2)}</div>
             </TotalCost>
           )}
-          {ctx.totalCartQuantity === 0 ? (
+          {cartCtx.totalCartQuantity === 0 ? (
             <Link to="/products">
               <ContinueShoppingButton onClick={onClose}>
                 Continue Shopping

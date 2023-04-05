@@ -3,11 +3,11 @@ import Button from "../ui/Button";
 import COOKIES_DATA from "../data/CookiesData";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import { CartContext } from "../store/cart-context";
+import { CartDispatchContext } from "../store/cart-context";
 
 export default function ProductDetails() {
   const { productId } = useParams();
-  const ctx = useContext(CartContext);
+  const CartDispatchCtx = useContext(CartDispatchContext);
 
   const { id, name, price, description, url } = COOKIES_DATA.find((i) => {
     return i.id === +productId;
@@ -15,7 +15,8 @@ export default function ProductDetails() {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    ctx.addProduct({
+    CartDispatchCtx({
+      type: "ADD",
       id: id,
       name: name,
       price: price,

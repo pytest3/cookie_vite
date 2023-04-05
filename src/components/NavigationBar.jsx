@@ -13,7 +13,7 @@ function NavigationBar() {
     document.body.style.overflow = "scroll";
   };
 
-  const ctx = useContext(CartContext);
+  const CartCtx = useContext(CartContext);
 
   return (
     <>
@@ -64,7 +64,9 @@ function NavigationBar() {
               }
               onClick={() => setShowModal(true)}
             >
-              Cart {ctx.totalCartQuantity > 0 && `(${ctx.totalCartQuantity})`}
+              Cart{" "}
+              {CartCtx.totalCartQuantity > 0 &&
+                `(${CartCtx.totalCartQuantity})`}
             </NavLink>
           </li>
         </ul>
