@@ -1,39 +1,36 @@
 import MaxWidthWrapper from "../ui/MaxWidthWrapper";
 import SectionWrapper from "../ui/SectionWrapper";
-import classes from "./Menu.module.css";
 import COOKIES_DATA from "../data/CookiesData";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 function Menu() {
   return (
-    <SectionWrapper className={classes.container}>
-      <MaxWidthWrapper>
-        <Wrapper>
-          <ProductHeader>Meet Our Favourites.</ProductHeader>
-          <ProductSubHeader>
-            When we set out to bake a cookie, we aimed for perfection. Our
-            passion for quality ingredients and love for baking come together to
-            create a moment of pure bliss in every delicious bite
-          </ProductSubHeader>
-          <CookieList>
-            {COOKIES_DATA.slice(0, 6).map(({ id, name, price, url }) => (
-              <Cookie key={id}>
-                <ImageWrapper>
-                  <Link to={`/product-details/${id}`}>
-                    <CookieImage src={url} />
-                  </Link>
-                </ImageWrapper>
-                <CookieDescription>
-                  <Link to={id}>{name}</Link>
-                  <div>${price}</div>
-                </CookieDescription>
-              </Cookie>
-            ))}
-          </CookieList>
-        </Wrapper>
-      </MaxWidthWrapper>
-    </SectionWrapper>
+    <MaxWidthWrapper>
+      <Wrapper>
+        <ProductHeader>Meet Our Favourites.</ProductHeader>
+        <ProductSubHeader>
+          When we set out to bake a cookie, we aimed for perfection. Our passion
+          for quality ingredients and love for baking come together to create a
+          moment of pure bliss in every delicious bite
+        </ProductSubHeader>
+        <CookieList>
+          {COOKIES_DATA.slice(0, 6).map(({ id, name, price, url }) => (
+            <Cookie key={id}>
+              <ImageWrapper>
+                <Link to={`/product-details/${id}`}>
+                  <CookieImage src={url} />
+                </Link>
+              </ImageWrapper>
+              <CookieDescription>
+                <Link to={id}>{name}</Link>
+                <div>${price}</div>
+              </CookieDescription>
+            </Cookie>
+          ))}
+        </CookieList>
+      </Wrapper>
+    </MaxWidthWrapper>
   );
 }
 
