@@ -16,7 +16,7 @@ function HomePage() {
       <Header />
       <CallToAction />
       <AboutUs />
-      <Products></Products>
+      <Menu></Menu>
       <Testimonial />
       <Blog />
       <Footer />
