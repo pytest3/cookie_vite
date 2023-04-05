@@ -1,8 +1,9 @@
 import MaxWidthWrapper from "../ui/MaxWidthWrapper";
+import styled from "styled-components";
 
 function Footer() {
   return (
-    <MaxWidthWrapper>
+    <Wrapper>
       <footer>
         <div className="container">
           <div className="footer-columns">
@@ -42,8 +43,12 @@ function Footer() {
           </div>
         </div>
       </footer>
-    </MaxWidthWrapper>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.footer`
+  padding-top: clamp(50px, 7vw + 1rem, 200px);
+`;
 
 export default Footer;
