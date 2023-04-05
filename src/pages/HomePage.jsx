@@ -17,10 +17,10 @@ function HomePage() {
       <CallToAction />
       <AboutUs />
       <Menu></Menu>
-      <Testimonial />
-      <Blog />
-      <Footer />
       <SignUp />
+      {/* <Testimonial /> */}
+      {/* <Blog /> */}
+      <Footer />
     </Fragment>
   );
 }
