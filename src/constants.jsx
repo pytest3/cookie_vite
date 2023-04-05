@@ -27,6 +27,7 @@ const BREAKPOINTS = {
 };
 
 export const WEIGHTS = {
+  light: 250,
   normal: 400,
   medium: 550,
   bold: 700,

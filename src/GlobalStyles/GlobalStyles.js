@@ -98,6 +98,8 @@ html {
   --color-modal: ${COLORS.modal};
   --color-cart: ${COLORS.cart};
 
+
+  --font-weight-light: ${WEIGHTS.light};
   --font-weight-normal: ${WEIGHTS.normal};
   --font-weight-medium: ${WEIGHTS.medium};
   --font-weight-bold: ${WEIGHTS.bold};
