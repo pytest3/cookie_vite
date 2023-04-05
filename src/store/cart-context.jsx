@@ -22,8 +22,6 @@ export default function CartContextProvider({ children }) {
     return prevVal + curVal.quantity * curVal.price;
   }, 0);
 
-  console.log(totalCartQuantity);
-
   function addProduct(product) {
     const productExists = products.find((i) => i.id === product.id);
     if (productExists) {
