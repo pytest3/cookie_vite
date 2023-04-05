@@ -8,8 +8,6 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordValid, setPasswordValid] = useState();
 
-  useEffect(() => {}, [password]);
-
   const emailChangeHandler = (e) => {
     setEmail(e.target.value);
     setEmailValid(email.includes("@") && email.trim().length > 4);
