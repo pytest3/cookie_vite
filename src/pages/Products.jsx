@@ -4,44 +4,65 @@ import styled from "styled-components";
 
 const Products = () => {
   return (
-    <CookieList>
-      <ProductHeader>Meet Our</ProductHeader>
-      <ProductHeaderEnd>Favourites</ProductHeaderEnd>
-      {COOKIES_DATA.slice(0, 6).map(({ id, name, price, url }) => (
-        <Cookie key={id}>
-          <ImageWrapper>
-            <Link to={`/product-details/${id}`}>
-              <CookieImage src={url} />
-            </Link>
-          </ImageWrapper>
-          <CookieDescription>
-            <Link to={id}>{name}</Link>
-            <div>${price}</div>
-          </CookieDescription>
-        </Cookie>
-      ))}
-    </CookieList>
+    <Wrapper>
+      <ProductHeader>Meet Our Favourites.</ProductHeader>
+      <ProductSubHeader>
+        When we set out to bake a cookie, we aimed for perfection. Our passion
+        for quality ingredients and love for baking come together to create a
+        moment of pure bliss in every delicious bite
+      </ProductSubHeader>
+      <CookieList>
+        {COOKIES_DATA.slice(0, 6).map(({ id, name, price, url }) => (
+          <Cookie key={id}>
+            <ImageWrapper>
+              <Link to={`/product-details/${id}`}>
+                <CookieImage src={url} />
+              </Link>
+            </ImageWrapper>
+            <CookieDescription>
+              <Link to={id}>{name}</Link>
+              <div>${price}</div>
+            </CookieDescription>
+          </Cookie>
+        ))}
+      </CookieList>
+    </Wrapper>
   );
 };
 
 export default Products;
 
-const ProductHeader = styled.h2`
-  font-size: clamp(2.5rem, 4vw, 3rem);
-  text-align: center;
-  background-color: #ece8d6;
+const Wrapper = styled.div`
+  padding-top: clamp(50px, calc(8vw +2rem), 200px);
 `;
 
-const ProductHeaderEnd = styled(ProductHeader)`
+const ProductHeader = styled.h2`
+  /* font-size: clamp(1rem, calc(0.5vw + 1rem), 2rem) */
+  font-size: clamp(2.5rem, 4vw, 3rem);
+  text-align: center;
+  line-height: 1;
+`;
+
+const ProductSubHeader = styled.h3`
   background-color: inherit;
-  align-self: center;
-  white-space: nowrap;
+  text-align: center;
+  /* font-size: calc((0.8 - 1) * 1.2vw + 1rem); */
+  font-size: clamp(0.8rem, calc(0.3vw + 1rem), 2rem);
+  font-weight: var(--font-weight-light);
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 32px 0;
+  /* text-transform: uppercase;  */
 `;
 
 const CookieList = styled.ul`
-  padding: clamp(50px, calc(7vw + 1rem), 200px) 0px;
   text-decoration: none;
   display: grid;
+  margin: 0;
+  padding-inline-start: 0px;
+  padding-block-end: clamp(50px, calc(7vw + 1rem), 200px);
+
   /**
    * User input values.
    */
