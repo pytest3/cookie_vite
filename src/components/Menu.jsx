@@ -3,6 +3,7 @@ import SectionWrapper from "../ui/SectionWrapper";
 import COOKIES_DATA from "../data/CookiesData";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Button from "../ui/Button";
 
 function Menu() {
   return (
@@ -15,7 +16,7 @@ function Menu() {
           moment of pure bliss in every delicious bite
         </ProductSubHeader>
         <CookieList>
-          {COOKIES_DATA.slice(0, 6).map(({ id, name, price, url }) => (
+          {COOKIES_DATA.slice(0, 3).map(({ id, name, price, url }) => (
             <Cookie key={id}>
               <ImageWrapper>
                 <Link to={`/product-details/${id}`}>
@@ -29,12 +30,19 @@ function Menu() {
             </Cookie>
           ))}
         </CookieList>
+        <ShopAllButton>Shop All</ShopAllButton>
       </Wrapper>
     </MaxWidthWrapper>
   );
 }
 
 export default Menu;
+
+const ShopAllButton = styled(Button)`
+  margin-bottom: clamp(50px, calc(7vw + 1rem), 200px);
+  margin-left: auto;
+  margin-right: auto;
+`;
 
 const Wrapper = styled.div`
   padding-top: clamp(50px, calc(8vw +2rem), 200px);
@@ -65,7 +73,7 @@ const CookieList = styled.ul`
   display: grid;
   margin: 0;
   padding-inline-start: 0px;
-  padding-block-end: clamp(50px, calc(7vw + 1rem), 200px);
+  padding-block-end: 32px;
 
   /**
    * User input values.
