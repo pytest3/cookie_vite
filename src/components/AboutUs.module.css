@@ -17,7 +17,8 @@
 
 .aboutText {
   margin-top: -20px;
-  font-size: clamp(1rem, calc(0.5vw + 1rem), 2rem);
+  /* font-size: clamp(1rem, calc(0.5vw + 1rem), 2rem); */
+  font-size: clamp(0.8rem, 0.3vw + 1rem, 2rem);
 }
 
 .imageWrapper {
